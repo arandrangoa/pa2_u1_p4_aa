@@ -50,7 +50,7 @@ public class Pa2U1P4AaApplication implements CommandLineRunner{
 	
 	//5.Imprimir reporte
 	List<Estudiante> reporte=this.estudianteService.reporteDeTodos();
-	System.out.println("Reporte de todos los estudiantes");
+	System.out.println("Reporte 1 de todos los estudiantes");
 	for(Estudiante estu1:reporte) {
 		System.out.println(estu1);
 	}	
@@ -60,7 +60,7 @@ public class Pa2U1P4AaApplication implements CommandLineRunner{
 	this.estudianteService.actualizar(MiEstu2);
 	
 	List<Estudiante> reporte2=this.estudianteService.reporteDeTodos();
-	System.out.println("Reporte de todos los estudiantes");
+	System.out.println("Reporte 2 de todos los estudiantes");
 	for(Estudiante estu1:reporte2) {
 		System.out.println(estu1);
 	}
@@ -69,7 +69,7 @@ public class Pa2U1P4AaApplication implements CommandLineRunner{
 	this.estudianteService.borrar("1727193847");
 	
 	List<Estudiante> reporte3=this.estudianteService.reporteDeTodos();
-	System.out.println("Reporte de todos los estudiantes");
+	System.out.println("Reporte 3 de todos los estudiantes");
 	for(Estudiante estu1:reporte3) {
 		System.out.println(estu1);
 	}

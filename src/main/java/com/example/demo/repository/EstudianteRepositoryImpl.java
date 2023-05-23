@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.modelo.Estudiante;
 
 @Repository
-public class EstudianteRepositoryImpl1 implements EstudianteRepository{
+public class EstudianteRepositoryImpl implements EstudianteRepository{
 
 	private static List<Estudiante> baseDatos=new ArrayList<>();
 	
