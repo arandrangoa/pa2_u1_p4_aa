@@ -45,4 +45,10 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepository{
 		return transEncontrado;
 	}
 
+	@Override
+	public List<Transferencia> reporteTransferencias() {
+		// TODO Auto-generated method stub
+		return baseDatos;
+	}
+
 }

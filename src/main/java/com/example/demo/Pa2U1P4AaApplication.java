@@ -6,11 +6,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.banco.modelo.CuentaBancaria;
+import com.example.demo.banco.modelo.Transferencia;
 import com.example.demo.banco.service.CuentaBancariaService;
 import com.example.demo.banco.service.TransferenciaService;
 import com.example.demo.modelo.Estudiante;
@@ -23,6 +25,7 @@ public class Pa2U1P4AaApplication implements CommandLineRunner{
 	private CuentaBancariaService bancariaService;
 	
 	@Autowired
+
 	private TransferenciaService transferenciaService;
 	
 
@@ -58,6 +61,16 @@ public class Pa2U1P4AaApplication implements CommandLineRunner{
 		System.out.println("Saldo origen: "+this.bancariaService.buscarPorNumero(cuenta2.getNumero()).getSaldo());
 
 
+		System.out.println("Reporte transferencias");
+		
+		List<Transferencia> reporte=this.transferenciaService.reporteTransferencias();;
+		for(Transferencia trans:reporte) {
+			System.out.println(trans);
+			
+			
+		}
+		
 	}
-
 }
+
+

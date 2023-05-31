@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.banco.modelo.CuentaBancaria;
@@ -17,13 +18,16 @@ import com.example.demo.banco.repository.TransferenciaRepository;
 @Service
 public class TransferenciaServiceImpl implements TransferenciaService{
 	
-	private static List<Transferencia> baseDatos=new ArrayList<>();
 	
 	@Autowired
 	private TransferenciaRepository transferenciaRepository;
 	
 	@Autowired
 	private CuentaBancariaRepository cuentaBancariaRepository;
+	
+	@Autowired
+	@Qualifier("internacional")
+	private IMontoDebitarService debitarService;
 	
 
 	@Override
@@ -60,11 +64,13 @@ public class TransferenciaServiceImpl implements TransferenciaService{
 		//2-Consultar el saldo de la cuenta Origen
 		BigDecimal saldoCtaOrigen=ctaOrigen.getSaldo();
 		
+		BigDecimal montoDebitar=this.debitarService.calcular(monto);
+		
 		//3-Validar si el saldo es suficiente
 		
-		if(monto.compareTo(saldoCtaOrigen)<=0) {
+		if(montoDebitar.compareTo(saldoCtaOrigen)<=0) {
 			//6-Si si es suficiente realizar la resta del saldo origen - monto
-			BigDecimal nuevoSaldoOrigen=saldoCtaOrigen.subtract(monto);
+			BigDecimal nuevoSaldoOrigen=saldoCtaOrigen.subtract(montoDebitar);
 			
 			//7-Actualizamos el nuevo saldo de la cuenta origen
 			ctaOrigen.setSaldo(nuevoSaldoOrigen);
@@ -107,4 +113,10 @@ public class TransferenciaServiceImpl implements TransferenciaService{
 		
 
 }
+
+	@Override
+	public List<Transferencia> reporteTransferencias() {
+		// TODO Auto-generated method stub
+		return this.transferenciaRepository.reporteTransferencias();
+	}
 }
