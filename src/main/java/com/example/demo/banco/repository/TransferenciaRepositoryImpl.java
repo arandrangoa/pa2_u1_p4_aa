@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.banco.modelo.Transferencia;
-import com.example.demo.modelo.Estudiante;
 
 @Repository
 public class TransferenciaRepositoryImpl implements TransferenciaRepository{
